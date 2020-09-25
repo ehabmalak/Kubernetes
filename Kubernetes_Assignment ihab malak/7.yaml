@@ -1,0 +1,8 @@
+# 1)Increase number of replicas to 4
+# Kubectl scale --replicas=4 -f 2.yaml
+
+# 2)Rolling restart 
+# kubectl rollout restart deployment your_deployment_name
+
+#3) Scale down replicas to 0. 
+#Kubectl scale --replicas=0 -f 2.yaml

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-limit
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-limit
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-limit
+        image: <Image>
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256mi"
+
+
+#kubectl apply -f 4.yaml --namespace=foo

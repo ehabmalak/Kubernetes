@@ -1,0 +1,26 @@
+#first step 
+#kubectl label node <nodename> disk=sdd --namespace=foo
+#second Step
+#kubectl get nodes --show-labels
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-assign
+  labels:
+    name: nginx-assign
+
+spec:
+  containers:
+  - name: nginx-assign
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  nodeSelector:
+      disk: ssd
+
+#Steps 3 
+#kubectl apply -f 6.yaml      

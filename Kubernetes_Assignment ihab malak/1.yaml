@@ -1,0 +1,31 @@
+#first create namespace foo
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+    tier: proxy
+spec: 
+  replicas: 2
+  template:
+    metadata:
+      name: nginx
+      labels:
+        tier: proxy
+    spec: 
+      containers:
+      - name: nginx
+        image: nginx
+  selector:
+    matchLabels:
+      tier: proxy
+
+#commands used: 
+#kubectl apply -f 1.yaml --namespace=foo
+
+#kubectl get rs --namespace=foo
+#kubectl describe < name from the previous command > --namespace=foo
+#kubectl get pods --namespace=foo
+#kubectl get pods <name of the pod >  -o yaml --namespace=foo

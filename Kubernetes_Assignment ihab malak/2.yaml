@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-expose  
+    labels:
+        app: nginx-expose
+spec:
+    replicas: 2
+    template:
+     metadata:
+       labels:
+          app: nginx-expose
+     spec:
+       containers:
+       - name: nginx-expose
+         image: nginx
+         ports:
+         - containerPort: 9090
+    selector:
+        matchLabels:
+            app: nginx-expose
+
+#kubectl apply -f 2.yaml  --namespace=foo
+#kubectl expose deployment nginx-expose --type=ClusterIP --port=8080 --target-port=9090
+#kubectl get service
+#minikube

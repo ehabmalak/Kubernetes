@@ -1,0 +1,31 @@
+#create configMap
+#kubectl apply -f config-map.yaml
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-consume
+spec:
+  selector:
+    matchLabels:
+      app: nginx-consume
+  template:
+    metadata:
+      labels:
+        app: nginx-consume    
+    spec:
+      containers:
+      - name: nginx-consume
+        image: nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+      envFrom:
+      - configMapRef:
+          name: myconfigmap
+      - secretRef:
+          name: secretName
+
+

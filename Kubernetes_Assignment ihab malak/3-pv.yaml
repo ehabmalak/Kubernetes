@@ -1,0 +1,16 @@
+#Question 3 Solution Start here
+  apiVersion: v1
+  kind: PersistentVolume
+  metadata:
+    name: pv-volume 
+    labels:
+      type: local
+  spec:
+    storageClassName: manual 
+    capacity:
+      storage: 1Gi
+    hostPath:
+      path: "/config"
+
+#kubectl apply -f 3-pv.yaml  --namespace=foo
+#next is 3-pvc.yaml
